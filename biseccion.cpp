@@ -22,6 +22,10 @@ double biseccion(vFunctionCall fun, double x0, double x1) {
     return x1;
   }
 
+  if (sameSign(y0, y1)) {
+    throw invalid_argument("received f(x0) and f(x1) of same sign");
+  }
+
   int i = 0;
   double x, y;
   while (i < ITER) {
@@ -43,7 +47,7 @@ double biseccion(vFunctionCall fun, double x0, double x1) {
     }
     i++;
   }
-  
+
   return x;
 }
 
@@ -55,8 +59,13 @@ double moreFun(double x) {
   return x * x * x - 6 * x * x + 3 * x + 10;
 }
 
+double fun(double x) {
+  return pow(x, 4) - 2 * pow(x, 3) - 3 * pow(x, 2) + 4 * x + 4;
+}
+
 int main() {
+  // cout << biseccion((vFunctionCall)fun, -10, 10) << endl;
   cout << biseccion((vFunctionCall)someFun, -10, 10) << endl;
-  cout << biseccion((vFunctionCall)moreFun, -10000, 100000) << endl;
+  cout << biseccion((vFunctionCall)moreFun, -2, 6) << endl;
   return 0;
 }
