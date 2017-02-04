@@ -18,7 +18,7 @@ El método de bisección se utiliza para encontrar una raíz aproximada de una f
 Para poder utilizar el método de bisección se debe saber de antemano un intervalo en donde la función contiene una raíz, además, la función debe ser continua en *[a, b]*.
 
 ### Diagrama de Flujo
-![Diagrama del método de bisección](./bisectionMethod.svg)
+![Diagrama del método de bisección](./bisectionMethod.svg?raw=true "Bisección")
 
 ### Criterio de detención
 
