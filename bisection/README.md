@@ -4,7 +4,7 @@
 
 El método de bisección se utiliza para encontrar una raíz aproximada de una función, que se buscará dentro de un intervalo inicial *[a, b]*, en el cual ocurre un cambio de signo en la función evaluada, es decir, *f(a)f(b) < 0*, por lo que el intervalo *[a, b]* debe contener un valor *c*, donde *f(c) = 0*. El teorema del valor intermedio para funciones continuas, que establece que si *f* es continua en *[a, b]* y si k es un número entre *f(a)* y *f(b)*, entonces existe por lo menos un  *c ∈ (a, b)* tal que *f(c) = k*.
 
-### Algoritmo
+## Algoritmo
 
 - Se eligen valores iniciales para *a* y *b* de tal forma que la función cambie de signo: *f(a)f(b) < 0*.
 - Se bisecta el intervalo *[a, b]*, calculando el punto intermedio con *x = (a + b) / 2*, este será la primera aproximación a la raíz.
