@@ -24,7 +24,7 @@ Para poder utilizar el método de bisección se debe saber de antemano un interv
 
 El método de bisección se detienen cuando se encuentra un valor *c ∈ (a, b)* tal que *f(c) ≤ |ε|*, donde ε es un valor próximo a cero. También se puede definir un número máximo de iteraciones para que el método se vea forzado a finalizar si no encuentra un valor que cumpla con los requisitos de terminación.
 
-Código en c++
+### Código en c++
 
 ```c++
 #include <cmath>
@@ -74,7 +74,7 @@ double biseccion(vFunctionCall fun, double x0, double x1) {
 
 ### Pruebas:
 
-|                                   Funcion                                  |      Raices    | [a, b] |     Resultado     |
+|                                   Función                                  |      Raices    | [a, b] |     Resultado     |
 | :------------------------------------------------------------------------- | :------------- | :----- | :---------------- |
 | [sin (x) + 2x - 1](http://www.wolframalpha.com/input/?i=sinx+%2B+2*x+-+1)  |     0.335418   | [-10, 10] | 0.335418  |
 | [x^3 - 6 * x^2 + 3 * x + 10](http://www.wolframalpha.com/input/?i=x%5E3+-+6+*+x%5E2+%2B+3+*+x+%2B+10) | -1, 2, 5  | [-200, 600] | -1 |
