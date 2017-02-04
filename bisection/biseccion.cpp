@@ -9,7 +9,7 @@ using namespace std;
 typedef double (* vFunctionCall)(double x);
 
 bool sameSign(double x, double y) {
-  return (x <= 0 && y <= 0) || (x >= 0 && y >= 0);
+  return x * y >= 0;
 }
 
 double biseccion(vFunctionCall fun, double x0, double x1) {
@@ -63,9 +63,14 @@ double fun(double x) {
   return pow(x, 4) - 2 * pow(x, 3) - 3 * pow(x, 2) + 4 * x + 4;
 }
 
+double funny(double x) {
+  return 1 / pow(x, 3);
+}
+
 int main() {
-  // cout << biseccion((vFunctionCall)fun, -10, 10) << endl;
-  cout << biseccion((vFunctionCall)someFun, -10, 10) << endl;
-  cout << biseccion((vFunctionCall)moreFun, -2, 6) << endl;
+  cout << biseccion(funny, -999999999999999999, 999999999999999999) << endl;
+  cout << biseccion(fun, -1, 2) << endl;
+  cout << biseccion(someFun, -10, 10) << endl;
+  cout << biseccion(moreFun, -200, 600) << endl;
   return 0;
 }
