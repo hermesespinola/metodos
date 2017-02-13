@@ -1,44 +1,39 @@
 #include <iostream>
 #include <cmath>
 
-#define ITER 1000
-#define MINERR 1E-15
+#define MINERR 1E-6
 
 using namespace std;
 
 typedef double (* vFunctionCall)(double x);
 
-double newtonRaphson(vFunctionCall fun, vFunctionCall der, double x0) {
-  if (der(x0) == 0) {
-    throw invalid_argument("Math Error");
-  }
-
-  double y = fun(x0);
+double newtonRaphson(vFunctionCall fun, vFunctionCall der, double x) {
   int i = 0;
+  double x1, y, dy, err;
 
-  while (abs(y) > MINERR) {
-    x0 = x0 - (y / der(x0));
-
-    y = fun(x0);
-    if (i > ITER) {
-      return x0;
-    }
-
+  do {
+    x1 = x;               // make x equal to the last calculated value.
+    y = fun(x1);         //  evaluate the function.
+    dy = der(x1);       //   evaluate the derivative of the function.
+    x = x1 - (y / dy); //    calculate the next guess from x, y and dy.
+    err = abs(x-x1);
     i++;
-  }
+  } while(err >= MINERR);  // if |x_(i+1)-x_(i)| remains greater than the desired accuracy, continue the loop
 
-  return x0;
+  cout << "error iterativo: " << err << endl;
+  cout << "# iteraciones: " << i << endl;
+  return x1;
 }
 
 double f(double x) {
-  return pow(x, 3) + 5 * x - 10;
+  return pow(x, 3) - x - 11;
 }
 
 double df(double x) {
-  return 3 * pow(x, 2) + 5;
+  return 3 * pow(x, 2) - 1;
 }
 
 int main() {
-  cout << newtonRaphson(f, df, 1000000000000000) << endl;
+  cout << "raíz: " << newtonRaphson(f, df, 0.56) << endl;
   return 0;
 }
