@@ -8,7 +8,7 @@ De las fórmulas para localizar raíces, la de Newton-Raphson puede que sea la m
 
 ## Diagrama de flujo
 
-![diagrama de Newton-Raphson](./newton-raphson-diagrama.png)
+![diagrama de Newton-Raphson](/../screenshots/newton-raphson-diagrama.png)
 
 ```cpp
 #include <iostream>
