@@ -26,14 +26,14 @@ double newtonRaphson(vFunctionCall fun, vFunctionCall der, double x) {
 }
 
 double f(double x) {
-  return pow(x, 3) - x - 11;
+  return pow(x, 1 / 3);
 }
 
 double df(double x) {
-  return 3 * pow(x, 2) - 1;
+  return 1/(3 * pow(x, (2/3)));
 }
 
 int main() {
-  cout << "raíz: " << newtonRaphson(f, df, 0.56) << endl;
+  cout << "raíz: " << newtonRaphson(f, df, 0.001) << endl;
   return 0;
 }
