@@ -1,14 +1,16 @@
-# NEWTON-RAPHSON
+% Newton-Raphson
+% Hermes Espínola
+% 11 Febrero 2017
 
 Newton-Raphson es un método abierto, sólo requiere un valor de inicio x, que emplea una fórmula para predecir la raíz. El problema con esta clase de métodos es que a veces divergen o se alejan de la raíz verdadera a medida que se avanza en el cálculo. Entoces, ¿por qué utilizarlos? Pues porque cuando sí convergen, en general, lo hacen mucho más rápido que los métodos cerrados.
 
 De las fórmulas para localizar raíces, la de Newton-Raphson puede que sea la más ampliamente utilizada. Si el valor inicial para la raíz es x_i, entonces se puede trazar una tangente desde el punto [x_i, f(x_i)] de la curva; comunmente el punto donde dicha tangente cruza el eje x representa una aproximación mejorada de la raíz. EL método se deduce a partir de la interpretación geométrica basada en la serie de Taylor.
 
-**f'(x_i) = f(x_i)-1/(x_i-x_{i+1}) -> x_i+1 = x_i – f(x_i)/f'(x_i)**
+**$$f'(x_i) = f(x_i)-1/(x_i-x_{i+1}) \rightarrow x_i+1 = x_i – f(x_i)/f'(x_i)$$**
 
 ## Diagrama de flujo
 
-![diagrama de Newton-Raphson](/../screenshots/newton-raphson-diagrama.png)
+<!-- ![diagrama de Newton-Raphson](/../screenshots/newton-raphson-diagrama.png) -->
 
 ```cpp
 #include <iostream>
@@ -72,4 +74,4 @@ No hay ningún criterio general de convergencia para el método, esta depende de
 | :------------- |:------ | :---- | :------------- | :----- | :--- |
 | x ^ 3 - x - 11 | 3x^2 - 1 | 0 (punto de inflexión) | infinito | Se cicla | Se cicla |
 | atan(x) | 1(x^2 + 1) | 1.39175 | 23 | infinito | nan |
-| \sqrt[3]{x} | 1/(3x^(2/3) | 0.001 | infinito | Diverge | Diverge |
+| $\sqrt[3]{x}$ | $1/(3x^(2/3)$ | 0.001 | infinito | Diverge | Diverge |
