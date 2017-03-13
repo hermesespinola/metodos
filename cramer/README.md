@@ -36,8 +36,8 @@ Tenemos que iterar sobre las columnas de A para reemplazarlas por b, el vector
 columna de terminos independientes y calcular su determinante.
 No se necesitan de más loops si el código está bien vectorizado.
 
-## Código
-```octave
+## Script
+```matlab
 function [ X ] = cramer( A, b )
 
 [n m] = size(A);
@@ -65,6 +65,15 @@ end % cramer
 
 ## Pruebas con 2 y 3 incógnitas
 
+### 2 incógnitas
+![2 incógnitas](./size2_1.gif)
+
+![2 incógnitas](./size2_2.gif)
+
+### 3 incógnitas
+![2 incógnitas](./size3_1.gif)
+
+![2 incógnitas](./size3_2.gif)
 
 ## Conclusiones
 La regla de cramer es especialmente útil si queremos resolver una sola incógnita

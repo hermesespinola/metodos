@@ -14,6 +14,7 @@ end
 
 X = zeros(size(A)(1), 1);
 
+% Matrix triangulation
 for i=1:n
   temp = A(i:end,i:end);
   m = temp(2:end, 1) ./ temp(1);
@@ -23,6 +24,7 @@ end
 
 X(end) = b(end) ./ A(end);
 
+% Backward substitution
 for i=n-1:-1:1
   X(i) = (b(i) - sum(-(A(i+1:end,i) .* X(i+1:end)))) ./ A(i, i);
 end
