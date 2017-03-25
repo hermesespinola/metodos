@@ -5,6 +5,10 @@
 
 using namespace std;
 
+double eval(double alpha, double beta, double x){
+  return alpha*exp(beta*x);
+}
+
 double *exponential_regression(double *X, double *Y, unsigned size) {
   double x_sum, y_sum, x2_sum, logy_sum, xlogy_sum;
 
