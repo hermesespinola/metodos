@@ -5,7 +5,7 @@
 using namespace std;
 
 double *linear_regression(unsigned n, string x_file, string y_file) {
-  double s_x, s_y, s_x2, s_p, mu_x, mu_y, std_x, std_y, std_xy, a0, a1;
+  double s_x, s_y, s_x2, s_p;
 
   double *xs = (double *) calloc(n, sizeof(double));
   double *ys = (double *) calloc(n, sizeof(double));
@@ -34,25 +34,27 @@ double *linear_regression(unsigned n, string x_file, string y_file) {
   x_stream.close();
   y_stream.close();
 
-  mu_x = s_x / n;
-  mu_y = s_y / n;
+  double mu_x = s_x / n;
+  double mu_y = s_y / n;
 
-  for (size_t i = 0; i < n; i++) {
-    std_x += pow(xs[i] - mu_x, 2);
-    std_y += pow(ys[i] - mu_y, 2);
-    std_xy += (xs[i] - mu_x) * (ys[i] - mu_y);
+  double a1 = (n * s_p - s_x * s_y) / (n * s_x2 - s_x * s_x);
+  double a0 = (mu_y - a1 * mu_x);
+
+  // correlation coeficient
+  double st, sr;
+  for (unsigned i = 0; i < n; i++) {
+    sr += pow(ys[i] - a0 - a1 * xs[i], 2);
+    st += pow(ys[i] - mu_y, 2);
   }
 
-  // standard deviation
-  std_x = sqrt(std_x/n);
-  std_x = sqrt(std_y/n);
-  std_xy /= n;
+  // standard error
+  double std_err = sqrt(sr / (n - 2));
+  std::cout << "Standard error: " << std_err << '\n';
 
-  cout << "Error estandar x: " << std_x / sqrt(n) << ", y: " << std_y / sqrt(n) << endl;
-  cout << "Coeficiente de correlación: " << std_xy / (std_x * std_y) << endl;
-
-  a1 = (n * s_p - s_x * s_y) / (n * s_x2 - s_x * s_x);
-  a0 = (mu_y - a1 * mu_x);
+  // Determination coefficient
+  double r2 = (st - sr) / st;
+  std::cout << "Determination coefficient: " << r2 << '\n';
+  std::cout << "Correlation coefficient: " << sqrt(r2) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
 
