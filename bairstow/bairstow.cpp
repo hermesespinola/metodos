@@ -149,21 +149,21 @@ void bairstow(vector<double> &pol, vector<complex_number*> &roots, double pi, do
   }
 }
 
-void print_pol(double *coeficients, unsigned degree) {
+void print_pol(double *coefficients, unsigned degree) {
   for (unsigned i = 0; i < degree - 1; i++) {
-    cout << coeficients[i] << "x^" << degree - i - 1 << " + ";
+    cout << coefficients[i] << "x^" << degree - i - 1 << " + ";
   }
-  cout << coeficients[degree - 1] << '\n';
+  cout << coefficients[degree - 1] << '\n';
 }
 
 int main(int argc, char const *argv[]) {
-  double coeficients[] = {6.7, -4, 0, 3.2, -3, 8, 1.2, 2, 0, 1, -4};
-  vector<double> polynomial(coeficients, coeficients + sizeof(coeficients) / sizeof(double));
+  double coefficients[] = {6.7, -4, 0, 3.2, -3, 8, 1.2, 2, 0, 1, -4};
+  vector<double> polynomial(coefficients, coefficients + sizeof(coefficients) / sizeof(double));
   vector<complex_number *> roots;
   double p = -1, q = -1;
 
   cout << "Original polynomial: ";
-  print_pol(coeficients, polynomial.size());
+  print_pol(coefficients, polynomial.size());
 
   cout << '\n' << "Bairstow: " << '\n';
   bairstow(polynomial, roots, p, q, 1e-4);
