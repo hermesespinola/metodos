@@ -9,7 +9,7 @@ double eval(double alpha, double beta, double x){
   return alpha*pow(x, beta);
 }
 
-double *exponential_regression(double *X, double *Y, unsigned size) {
+double *power_regression(double *X, double *Y, unsigned size) {
   double y_sum, logx_sum, logy_sum, logxlogy_sum, logx2_sum;
 
   for (size_t i = 0; i < size; i++) {
@@ -42,12 +42,12 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
   // standard error
   double std_err = sqrt(sr / (size - 2));
-  std::cout << "Standard error: " << std_err << '\n';
+  cout << "Standard error: " << std_err << '\n';
 
   // Determination coefficient
   double r2 = (st - sr) / st;
-  std::cout << "Determination coefficient: " << r2 << '\n';
-  std::cout << "Correlation coefficient: " << sqrt(r2) << '\n';
+  cout << "Determination coefficient: " << r2 << '\n';
+  cout << "Correlation coefficient: " << sqrt(r2) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
 
@@ -56,7 +56,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
 int main(int argc, char const *argv[]) {
   if (argc < 4) {
-    std::cerr << "Invalid number of arguments" << '\n';
+    cerr << "Invalid number of arguments" << '\n';
     return -1;
   }
 
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[]) {
   istringstream ss(argv[3]);
   int size;
   if (!(ss >> size)) {
-    std::cerr << "Invalid number " << argv[3] << '\n';
+    cerr << "Invalid number " << argv[3] << '\n';
   }
 
   if (!x_stream.is_open() | !y_stream.is_open()) {
@@ -94,7 +94,7 @@ int main(int argc, char const *argv[]) {
   x_stream.close();
   y_stream.close();
 
-  exponential_regression(X, Y, size);
+  power_regression(X, Y, size);
 
   return 0;
 }
