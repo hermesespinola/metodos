@@ -53,8 +53,11 @@ ajustan bien al modelo e introducen mucho error, modificando la aproximación.
 | 8 | 44 |
 
 Standard error: 1.69161
+
 Determination coefficient: 0.987722
+
 Correlation coefficient: 0.993842
+
 Equation: Y = 4.630769 + 5.153846 * X
 
 ![Niños](./tests/niños.png)
@@ -77,8 +80,11 @@ Equation: Y = 4.630769 + 5.153846 * X
 | 62 | 240 |
 
 Standard error: 9.46644
+
 Determination coefficient: 0.910105
+
 Correlation coefficient: 0.953994
+
 Equation: Y_guess = 31.741135 + 3.473404 * X
 
 ![Produccion](./tests/produccion.jpg)
@@ -95,8 +101,11 @@ Equation: Y_guess = 31.741135 + 3.473404 * X
 | 36 | 48 |
 
 Standard error: 5.57802
+
 Determination coefficient: 0.931195
+
 Correlation coefficient: 0.964984
+
 Equation: Y_guess = -6.780155 + 1.770233 * X
 
 ![Ventas](./tests/ventas.jpg)
