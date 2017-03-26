@@ -41,13 +41,13 @@ double *power_regression(double *X, double *Y, unsigned size) {
   cout << "SR: " << sr << endl;
 
   // standard error
-  double std_err = sqrt(sr / (size - 2));
+  double std_err = sqrt(abs(sr / (size - 2)));
   cout << "Standard error: " << std_err << '\n';
 
   // Determination coefficient
   double r2 = (st - sr) / st;
   cout << "Determination coefficient: " << r2 << '\n';
-  cout << "Correlation coefficient: " << sqrt(r2) << '\n';
+  cout << "Correlation coefficient: " << sqrt(abs(r2)) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
 

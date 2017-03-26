@@ -38,13 +38,13 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
   }
 
   // standard error
-  double std_err = sqrt(sr / (size - 2));
+  double std_err = sqrt(abs(sr / (size - 2)));
   std::cout << "Standard error: " << std_err << '\n';
 
   // Determination coefficient
   double r2 = (st - sr) / st;
   std::cout << "Determination coefficient: " << r2 << '\n';
-  std::cout << "Correlation coefficient: " << sqrt(r2) << '\n';
+  std::cout << "Correlation coefficient: " << sqrt(abs(r2)) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
 
