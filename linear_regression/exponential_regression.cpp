@@ -28,7 +28,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
   double a1 = (size * xlogy_sum - x_sum * logy_sum) / (size * x2_sum - x_sum * x_sum);
   double a0 = (mu_logy - a1 * mu_x);
 
-  printf("Equation: y = exp(%f) * exp(%f)x\n", a0, a1);
+  printf("Equation: Y_guess = exp(%f) * exp(%f * X)\n", a0, a1);
 
   // correlation coeficient
   double st, sr;
@@ -43,7 +43,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
   // Determination coefficient
   double r2 = (st - sr) / st;
-  std::cout << "Determination coefficient" << r2 << '\n';
+  std::cout << "Determination coefficient: " << r2 << '\n';
   std::cout << "Correlation coefficient: " << sqrt(r2) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;

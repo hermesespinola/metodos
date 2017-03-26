@@ -28,7 +28,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
   double a1 = (size * logxlogy_sum - logx_sum * logy_sum) / (size * logx2_sum - logx_sum * logx_sum);
   double a0 = (mu_logy - a1 * mu_logx);
 
-  printf("Equation: y = 10^%f * x^%f\n", a0, a1);
+  printf("Equation: Y_guess = 10^%f * X.^%f\n", a0, a1);
 
   // correlation coeficient
   double st, sr;
@@ -46,7 +46,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
   // Determination coefficient
   double r2 = (st - sr) / st;
-  std::cout << "Determination coefficient" << r2 << '\n';
+  std::cout << "Determination coefficient: " << r2 << '\n';
   std::cout << "Correlation coefficient: " << sqrt(r2) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
@@ -68,8 +68,6 @@ int main(int argc, char const *argv[]) {
   if (!(ss >> size)) {
     std::cerr << "Invalid number " << argv[3] << '\n';
   }
-
-  cout << size << '\n';
 
   if (!x_stream.is_open() | !y_stream.is_open()) {
     cerr << "Unable to open file\n";
