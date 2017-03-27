@@ -78,9 +78,8 @@ int main(int argc, char const *argv[]) {
   double *Y = new double[size];
 
   // Read files
-  cout << "--- Big Data ---" << '\n';
-  cout << "  X\t|  Y" << '\n';
-  cout << "----------------" << '\n';
+  cout << "| X\t| Y |" << '\n';
+  cout << "| :---- | :---- |" << '\n';
   for (int i = 0; x_stream && y_stream && i < size; i++) {
     double x, y;
     x_stream >> x;
@@ -89,7 +88,7 @@ int main(int argc, char const *argv[]) {
     X[i] = x;
     Y[i] = y;
 
-    cout << x << "\t" << y << endl;
+    cout << "| " << x << "\t| " << y << " |" << endl;
   }
   x_stream.close();
   y_stream.close();

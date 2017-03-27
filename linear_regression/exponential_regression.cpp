@@ -39,12 +39,12 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
   // standard error
   double std_err = sqrt(abs(sr / (size - 2)));
-  std::cout << "Standard error: " << std_err << '\n';
+  cout << "Standard error: " << std_err << '\n';
 
   // Determination coefficient
   double r2 = (st - sr) / st;
-  std::cout << "Determination coefficient: " << r2 << '\n';
-  std::cout << "Correlation coefficient: " << sqrt(abs(r2)) << '\n';
+  cout << "Determination coefficient: " << r2 << '\n';
+  cout << "Correlation coefficient: " << sqrt(abs(r2)) << '\n';
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
 
@@ -53,7 +53,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
 int main(int argc, char const *argv[]) {
   if (argc < 4) {
-    std::cerr << "Invalid number of arguments" << '\n';
+    cerr << "Invalid number of arguments" << '\n';
     return -1;
   }
 
@@ -63,10 +63,8 @@ int main(int argc, char const *argv[]) {
   istringstream ss(argv[3]);
   int size;
   if (!(ss >> size)) {
-    std::cerr << "Invalid number " << argv[3] << '\n';
+    cerr << "Invalid number " << argv[3] << '\n';
   }
-
-  cout << size << '\n';
 
   if (!x_stream.is_open() | !y_stream.is_open()) {
     cerr << "Unable to open file\n";
@@ -77,9 +75,8 @@ int main(int argc, char const *argv[]) {
   double *Y = new double[size];
 
   // Read files
-  cout << "--- Big Data ---" << '\n';
-  cout << "  X\t|  Y" << '\n';
-  cout << "----------------" << '\n';
+  cout << "| X\t| Y |" << '\n';
+  cout << "| :---- | :---- |" << '\n';
   for (int i = 0; x_stream && y_stream && i < size; i++) {
     double x, y;
     x_stream >> x;
@@ -88,7 +85,7 @@ int main(int argc, char const *argv[]) {
     X[i] = x;
     Y[i] = y;
 
-    cout << x << "\t" << y << endl;
+    cout << "| " << x << "\t| " << y << " |" << endl;
   }
   x_stream.close();
   y_stream.close();
