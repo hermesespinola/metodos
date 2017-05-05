@@ -22,20 +22,36 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
   }
 
   double mu_x = x_sum / size;
+  cout << "mu_x = " << mu_x << endl;
   double mu_y = y_sum / size;
+  cout << "x2_sum = " << x2_sum << endl;
+  cout << "mu_y = " << mu_y << endl;
   double mu_logy = logy_sum / size;
+  cout << "mu_logy = " << mu_logy << endl;
+  cout << "logy_sum = " << logy_sum << endl;
+  cout << "xlogy_sum = " << xlogy_sum << endl;
 
   double a1 = (size * xlogy_sum - x_sum * logy_sum) / (size * x2_sum - x_sum * x_sum);
+  cout << "a1 = " << a1 << endl;
   double a0 = (mu_logy - a1 * mu_x);
+  cout << "a0 = " << a0 << endl;
+  double alpha = exp(a0);
+  cout << "alpha = exp(a0) = " << alpha << endl;
+  double beta = a1;
+  cout << "beta = a1 = " << beta << endl;
 
   printf("Equation: Y_guess = exp(%f) * exp(%f * X)\n", a0, a1);
+  printf("Alpha = %f, Beta = %f\n", alpha, beta);
 
   // correlation coeficient
   double st, sr;
   for (size_t i = 0; i < size; i++) {
-    sr += pow(Y[i] - exp(a0) * exp(a1 * X[i]), 2);
+    sr += pow(Y[i] - eval(alpha, beta, X[i]), 2);
     st += pow(Y[i] - mu_y, 2);
   }
+
+  cout << "st = " << st << endl;
+  cout << "sr = " << sr << endl;
 
   // standard error
   double std_err = sqrt(abs(sr / (size - 2)));
@@ -48,7 +64,7 @@ double *exponential_regression(double *X, double *Y, unsigned size) {
 
   cout << "a1: " << a1 << "\t" << "a0: " << a0 << endl;
 
-  return new double[2] {a0, a1};
+  return new double[2] {alpha, beta};
 }
 
 int main(int argc, char const *argv[]) {
@@ -90,7 +106,8 @@ int main(int argc, char const *argv[]) {
   x_stream.close();
   y_stream.close();
 
-  exponential_regression(X, Y, size);
+  auto a = exponential_regression(X, Y, size);
+  cout << "porcentaje para 5000 horas: " << eval(a[0], a[1], 5000) << endl;
 
   return 0;
 }

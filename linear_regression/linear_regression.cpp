@@ -6,7 +6,7 @@
 using namespace std;
 
 double *linear_regression(double *xs, double *ys, unsigned size) {
-  double s_x, s_y, s_x2, s_p;
+  double s_x = 0, s_y = 0, s_x2 = 0, s_p = 0;
 
   for (size_t i = 0; i < size; i++) {
     s_x += xs[i];
@@ -22,9 +22,10 @@ double *linear_regression(double *xs, double *ys, unsigned size) {
   double a0 = (mu_y - a1 * mu_x);
 
   // correlation coeficient
-  double st, sr;
+  double st; // Suma total de cuadrados alrededor de la media
+  double sr; // Suma total de cuadrados alrededor de la línea (error residual)
   for (unsigned i = 0; i < size; i++) {
-    sr += pow(ys[i] - a0 - a1 * xs[i], 2);
+    sr += pow(ys[i] - (a0 + a1 * xs[i]), 2);
     st += pow(ys[i] - mu_y, 2);
   }
 

@@ -3,54 +3,56 @@
 
 using namespace std;
 
-double f(double x) {
-    return log(x);
+void lineal(){
+  double x1, x2, y1, y2, x, y;
+  cout << "x1: ";
+  cin >> x1;
+  cout << "y1: ";
+  cin >> y1;
+  cout << "x2: ";
+  cin >> x2;
+  cout << "y2: ";
+  cin >> y2;
+  cout << "x: ";
+  cin >> x;
+  y = y1 + (y2 - y1)/(x2 - x1) * (x - x1);
+  cout << "Approximated value of y = " << y << endl;
 }
 
-void polynomial(double x) {
-    double x0 = 1, x1 = 4, x2 = 6;
-    
-    double b0 = f(x0);
-    double b1 = (f(x1) - f(x0)) / (x1 - x0);
-    double b2 = ((f(x2) - f(x1) / (x2 - x1)) - b2) / (x2 - x0);
-
-    double a0 = b0 - b1 * x0 + b2 * x0 * x1;
-    double a1 = b1 - b2 * x0 - b2 * x1;
-    double a2 = b2;
-    
-    double y = b0 + b1 * (x - x0) + b2 * (x - x0) * (x - x1);
-    cout << "y = " << y << endl;
-
-    // error
-
+double f(double x){
+  return log(x);
 }
 
-double newton_interpolation(double *X, double x, unsigned n) {
-    double *F = new double[n];
-
-    for (unsigned i = 0; i < n; i++) {
-        F[i] = f(X[i]);
-    }
-
-    for (int j = 1; j < n; j++)
-        for (int k = n - 1; k >= j; k--)
-            F[k] = (F[k] - F[k - 1]) / (X[k] - X[k - j]);
-
-    double fn = 0;
-    double a = 1;
-    for (int i = 0; i < n; i++) {
-        fn += a * F[i];
-        a *= (x - X[i]);
-    }
-
-    return fn;
+void evaluar(double a0, double a1, double a2, double x){
+  double y, err_r, err_abs, err_p;
+  y = a0 + a1*x + a2*x*x;
+  cout << "f("<< x << ") = " << y << endl;
+  err_abs = abs(f(x) - y);
+  err_r = err_abs / f(x);
+  err_p = err_r * 100;
+  cout << "Error absoluto = " << err_abs << endl;
+  cout << "Error relativo = " << err_r << endl;
+  cout << "Error porcentual = " << err_p << "%" << endl;
 }
 
-int main() {
-    unsigned n = 3;
-    double X[] = {1, 4, 6};
-    double x = 5;
-    cout << f(x) << endl;
-    cout << newton_interpolation(X, x, n) << endl;
-    return 0;
+void cuadratica(){
+  double x0 = 1, x1 = 4, x2 = 6;
+  double y0 = 0, y1 = 1.386294, y2 = 1.791759;
+  double b0, b1, b2;
+  double a0, a1, a2;
+  b0 = y0;
+  b1 = (y1 - y0) / (x1 - x0);
+  b2 = ((y2 - y1) / (x2 - x1) - (y1 - y0) / (x1 - x0))/ (x2 - x0);
+  cout << "b2 = " << b2 << ", b1 = " << b1 << ", b0 = " << b0 << endl;
+  a2 = b2;
+  a1 = b1 - b2*x0 - b2*x1;
+  a0 = b0 - b1*x0 + b2*x0*x1;
+  cout << endl << "f(x) = " << a0 << " + " << a1 << "x + " << a2 << "x^2" << endl;
+  evaluar(a0,a1,a2,5);
+}
+
+int main(){
+  //lineal();
+  cuadratica();
+  return 0;
 }
